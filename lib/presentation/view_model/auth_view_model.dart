@@ -14,25 +14,18 @@ class AuthViewModel extends ChangeNotifier {
   late TextEditingController userPw;
   late TextEditingController confirmPw;
 
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+  ]);
 
   bool isLogin() => _authRepository.isLogin();
 
   Future<void> guestLogin() async => await _authRepository.guestLogin();
 
   Future<bool> googleLogin() async {
-    try {
-      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-      if (googleSignInAccount == null) return false;
-      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-      // final String authCode = await get
-
-      print(googleSignInAuthentication.accessToken);
-      return await _authRepository.googleLogin(accessToken: googleSignInAuthentication.accessToken!);
-    } catch (e) {
-      print(e);
-      return false;
-    }
+    await _googleSignIn.signIn();
+    return await _authRepository.googleLogin();
   }
 
 

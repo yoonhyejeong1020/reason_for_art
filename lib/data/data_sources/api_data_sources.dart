@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart';
 
 class ApiDataSources {
@@ -19,5 +21,14 @@ class ApiDataSources {
 
   Future<Response> get(Uri url) async => await _sandRequest(() => _client.get(url));
 
-  Future<Response> post(Uri url, Map<String, String> headers, Map<String, dynamic> body) async => await _sandRequest(() => _client.post(url, headers: headers, body: body));
+  Future<Response> getHeader(
+    Uri url,
+    Map<String, String> headers,
+  ) async => await _sandRequest(() => _client.get(url, headers: headers));
+
+  Future<Response> post(
+    Uri url,
+    Map<String, String> headers,
+    Map<String, dynamic> body,
+  ) async => await _sandRequest(() => _client.post(url, headers: headers, body: jsonEncode(body)));
 }

@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               Positioned(
                 top: museumObjectViewModel.imageHeight,
                 child: Container(
-                  width: ssW(context) - 20,
+                  width: ssW(context) - 40,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

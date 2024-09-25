@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="reason_for_art_app"
+        android:label="reason for art"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

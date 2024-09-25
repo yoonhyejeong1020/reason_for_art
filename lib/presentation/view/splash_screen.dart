@@ -31,10 +31,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void updateScreen() => setState(() {});
 
   void _navigatorScreen() {
-    Timer(Duration(milliseconds: 500), () async {
+    Timer(Duration(milliseconds: 500), () {
       Navigator.pushReplacement(
         context,
-        await authViewModel.isLogin()
+        authViewModel.isLogin()
             ? MaterialPageRoute(builder: (context) => MainTabScreen())
             : MaterialPageRoute(builder: (context) => LoginScreen()),
       );
@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 animation: animationViewModel.splashAnimation,
                 builder: (context, child) {
                   return Transform.translate(
-                    offset: Offset(0, animationViewModel.splashAnimation.value * ssH(context) / 2),
+                    offset: Offset(0, animationViewModel.splashAnimation.value * ssH(context) / 2 + 10),
                     child: Text(
                       'Reason For Art',
                       style: textTheme(context).titleMedium,

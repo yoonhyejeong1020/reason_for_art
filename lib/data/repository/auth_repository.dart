@@ -27,24 +27,35 @@ class AuthRepository {
     return await _sharedPrefs.setUserToken(jsonDecode(response.body)['token']);
   }
 
-  Future<bool> googleLogin({required String accessToken}) async {
-    final Uri url = Uri.parse('https://api.artsy.net/oauth2/access_token&redirect_uri=https://www.googleapis.com/oauth2/v1/certs&response_type=code');
-    final Map<String, String> headers = {'Content-type': 'application/x-www-form-urlencoded'};
-    final Map<String, String> body = {
-      'client_id': ApiKeyUtils.googleClientId,
+  Future<bool> googleLogin() async {
+    final Uri url = Uri.parse('https://api.artsy.net/api/tokens/xapp_token');
+    final Map<String, String> headers = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> body = {
+      'client_id': ApiKeyUtils.artsyClientId,
       'client_secret': ApiKeyUtils.artsyApiSecret,
-      'code': accessToken,
-      'grant_type': 'authorization_code',
     };
-    print(body);
+
     final response = await _apiDataSources.post(url, headers, body);
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      print(jsonDecode(response.body)['access_token']);
-      print(jsonDecode(response.body)['expires_in']);
+    if (response.statusCode == 201) {
+      print('googleLogin response body: ${jsonDecode(response.body)}');
+      _artsyLogin(accessToken: jsonDecode(response.body)['token']);
       return true;
     } else {
-      print('googleLogin ${response.statusCode}');
+      return false;
+    }
+  }
+
+  Future<bool> _artsyLogin({required String accessToken}) async {
+    final Uri url = Uri.parse('https://api.artsy.net/api/artists');
+    final Map<String, String> headers = {'X-Xapp-Token': accessToken};
+
+    final response = await _apiDataSources.getHeader(url, headers);
+
+    if (response.statusCode == 200) {
+      print('artsy response body: ${jsonDecode(response.body)}');
+      return true;
+    } else {
       return false;
     }
   }

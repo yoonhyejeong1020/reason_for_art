@@ -87,8 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
           20.sbH,
-          googleLoginBtn(context: context, function: authViewModel.googleLogin),
-          10.sbH,
           guestLoginBtn(context: context, function: authViewModel.guestLogin),
         ],
       );

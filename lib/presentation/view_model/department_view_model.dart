@@ -11,7 +11,6 @@ class DepartmentViewModel extends ChangeNotifier {
   List<DepartmentModel> departmentList = [];
 
   Future<void> getDepartmentList() async {
-    departmentList = await _departmentRepository.getDepartmentList();
     notifyListeners();
   }
 }

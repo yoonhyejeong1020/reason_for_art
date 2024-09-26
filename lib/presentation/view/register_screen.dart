@@ -76,8 +76,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ],
           ),
           20.sbH,
-          googleLoginBtn(context: context, function: authViewModel.googleLogin),
-          10.sbH,
           guestLoginBtn(context: context, function: authViewModel.guestLogin)
         ],
       );

@@ -41,34 +41,6 @@ Widget authBtn({required BuildContext context, required String text}) =>
       child: Text(text, style: textTheme(context).displayLarge),
     );
 
-Widget googleLoginBtn({
-  required BuildContext context,
-  required Future<bool> Function() function,
-}) => GestureDetector(
-        onTap: () async {
-          if (await function()) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainTabScreen()));
-          } else {
-            print('google error');
-          }
-        },
-        child: Container(
-          width: ssW(context),
-          height: 60,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Text('Continue with Google', style: textTheme(context).bodyMedium),
-              Positioned(left: 20, child: Image.asset('assets/google_logo.png')),
-            ],
-          ),
-        ),
-      );
-
 Widget guestLoginBtn({
   required BuildContext context,
   required Future<void> Function() function,

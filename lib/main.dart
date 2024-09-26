@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reason_for_art_app/data/data_sources/shared_prefs.dart';
 import 'package:reason_for_art_app/di/di.dart';
+import 'package:reason_for_art_app/data/data_sources/shared_prefs.dart';
 import 'package:reason_for_art_app/presentation/view/splash_screen.dart';
 import 'package:reason_for_art_app/presentation/view_model/animation_view_model.dart';
 import 'package:reason_for_art_app/presentation/view_model/auth_view_model.dart';

@@ -18,8 +18,8 @@ class SharedPrefs {
   Future<bool> setUserLogin(bool value) async => await _prefs.setBool(_userLoginKey, value);
   bool? getUserLogin() => _prefs.getBool(_userLoginKey);
 
-  Future<bool> setTodayArt(int value) async => await _prefs.setInt(_todayArtKey, value);
-  int? getTodayArt() => _prefs.getInt(_todayArtKey);
+  Future<bool> setTodayArt(String value) async => await _prefs.setString(_todayArtKey, value);
+  String? getTodayArt() => _prefs.getString(_todayArtKey);
 
   SharedPrefs._internal();
 }

@@ -36,7 +36,6 @@ class MuseumObjectRepository {
 
     if (response.statusCode == 404) return getRandomMuseumObjectModel();
     if (MuseumObjectModel.fromJson(jsonDecode(response.body)).primaryImage == '') return getRandomMuseumObjectModel();
-    await _sharedPrefs.setTodayArt(randomMuseumObjectId);
 
     final Map<String, dynamic> jsonMap = jsonDecode(response.body);
     return MuseumObjectModel.fromJson(jsonMap);

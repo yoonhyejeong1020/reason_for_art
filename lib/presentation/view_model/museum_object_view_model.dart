@@ -28,7 +28,6 @@ class MuseumObjectViewModel extends ChangeNotifier {
       final RenderBox renderBox = imageGlobalKey.currentContext?.findRenderObject() as RenderBox;
       final size = renderBox.size;
       imageHeight = size.height;
-      notifyListeners();
       print('MuseumObjectViewModel: image Height $imageHeight');
     }
   }

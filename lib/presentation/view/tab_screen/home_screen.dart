@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reason_for_art_app/presentation/view_model/artwork_view_model.dart';
 
 import '../../../di/di.dart';
 import '../../../utils/color_utils.dart';
@@ -19,12 +20,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final DepartmentViewModel departmentViewModel = DI().get<DepartmentViewModel>();
   final MuseumObjectViewModel museumObjectViewModel = DI().get<MuseumObjectViewModel>();
   final AnimationViewModel animationViewModel = DI().get<AnimationViewModel>();
+  final ArtworkViewModel artworkViewModel = DI().get<ArtworkViewModel>();
 
   @override
   void initState() {
     super.initState();
 
     animationViewModel.initLoadingAnimation(vsync: this);
+
+    artworkViewModel.getRandomArtworkModel();
 
     departmentViewModel.addListener(updateScreen);
     museumObjectViewModel.addListener(updateScreen);
@@ -97,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               Positioned(
                 top: museumObjectViewModel.imageHeight,
                 child: Container(
-                  width: ssW(context) - 40,
+                  width: ssW(context) - 20,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:reason_for_art_app/data/repository/artwork_repository.dart';
 import 'package:reason_for_art_app/di/di.dart';
 import 'package:reason_for_art_app/data/data_sources/shared_prefs.dart';
 import 'package:reason_for_art_app/presentation/view/splash_screen.dart';
 import 'package:reason_for_art_app/presentation/view_model/animation_view_model.dart';
+import 'package:reason_for_art_app/presentation/view_model/artwork_view_model.dart';
 import 'package:reason_for_art_app/presentation/view_model/auth_view_model.dart';
 import 'package:reason_for_art_app/presentation/view_model/department_view_model.dart';
 import 'package:reason_for_art_app/presentation/view_model/main_tab_view_model.dart';
@@ -26,18 +28,21 @@ void main() async {
   final DepartmentRepository departmentRepository = DepartmentRepository(apiDataSources: apiDataSources);
   final MuseumObjectRepository museumObjectRepository = MuseumObjectRepository(apiDataSources: apiDataSources, sharedPrefs: sharedPrefs);
   final AuthRepository authRepository = AuthRepository(apiDataSources: apiDataSources, sharedPrefs: sharedPrefs);
+  final ArtworkRepository artworkRepository = ArtworkRepository(apiDataSources: apiDataSources, sharedPrefs: sharedPrefs);
 
   final MainTabViewModel mainTabViewModel = MainTabViewModel();
   final DepartmentViewModel departmentViewModel = DepartmentViewModel(departmentRepository: departmentRepository);
   final MuseumObjectViewModel museumObjectViewModel = MuseumObjectViewModel(museumObjectRepository: museumObjectRepository);
   final AnimationViewModel animationViewModel = AnimationViewModel();
   final AuthViewModel authViewModel = AuthViewModel(authRepository: authRepository);
+  final ArtworkViewModel artworkViewModel = ArtworkViewModel(artworkRepository: artworkRepository);
 
   di.set<MainTabViewModel>(mainTabViewModel);
   di.set<DepartmentViewModel>(departmentViewModel);
   di.set<MuseumObjectViewModel>(museumObjectViewModel);
   di.set<AnimationViewModel>(animationViewModel);
   di.set<AuthViewModel>(authViewModel);
+  di.set<ArtworkViewModel>(artworkViewModel);
 
   runApp(const MyApp());
 }

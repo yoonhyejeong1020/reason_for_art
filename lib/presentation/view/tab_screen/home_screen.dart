@@ -119,7 +119,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           '${artworkViewModel.artworkModel!.mediumDisplay} ${artworkViewModel.artworkModel!.dimensions!}',
                           style: textTheme(context).bodySmall,
                         ),
+                        20.sbH,
+                        Text(
+                          '${artworkViewModel.artworkModel!.description}',
 
+                        ),
                       ],
                     ),
                   ),
@@ -127,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               Positioned(
                 left: 20,
-                top: museumObjectViewModel.imageHeight - 30,
+                top: artworkViewModel.imageHeight - 30,
                 height: 50,
                 child: Container(
                   decoration: BoxDecoration(

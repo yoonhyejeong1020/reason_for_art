@@ -9,9 +9,21 @@ class ArtworkViewModel extends ChangeNotifier {
 
   ArtworkModel? artworkModel;
 
+  GlobalKey imageGlobalKey = GlobalKey();
+  double imageHeight = 370;
+
   Future<void> getRandomArtworkModel() async {
     artworkModel = await _artworkRepository.getRandomArtworkModel();
     print(artworkModel);
     notifyListeners();
+  }
+
+  void imageLoadingBuilder() {
+    if (imageGlobalKey.currentContext!= null) {
+      final RenderBox renderBox = imageGlobalKey.currentContext?.findRenderObject() as RenderBox;
+      final size = renderBox.size;
+      imageHeight = size.height;
+      print('MuseumObjectViewModel: image Height $imageHeight');
+    }
   }
 }

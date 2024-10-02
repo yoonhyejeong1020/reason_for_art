@@ -31,6 +31,7 @@ class ArtworkRepository {
 
     if (response.statusCode == 404) return await getRandomArtworkModel();
     if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == '') return await getRandomArtworkModel();
+    print(jsonDecode(response.body)['data']);
 
     final Map<String, dynamic> jsonMap = jsonDecode(response.body)['data'];
     return ArtworkModel.fromJson(jsonMap);

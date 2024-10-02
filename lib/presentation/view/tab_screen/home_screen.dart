@@ -28,14 +28,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     animationViewModel.initLoadingAnimation(vsync: this);
 
-    artworkViewModel.getRandomArtworkModel();
-
     departmentViewModel.addListener(updateScreen);
     museumObjectViewModel.addListener(updateScreen);
   }
 
   void updateScreen() {
-    if (museumObjectViewModel.museumObjectModel != null) {
+    if (artworkViewModel.artworkModel != null) {
       print('loadingAnimationController stop');
       animationViewModel.loadingAnimationController.stop();
     }
@@ -44,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget _buildLoadingWidget(BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
     if (loadingProgress == null) {
-      Future.delayed(Duration.zero, () => museumObjectViewModel.imageLoadingBuilder());
+      Future.delayed(Duration.zero, () => artworkViewModel.imageLoadingBuilder());
       return child;
     } else {
       return imageLoadingWidget(
@@ -65,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: museumObjectViewModel.museumObjectModel == null
+        body: artworkViewModel.artworkModel == null
             ? homeLoadingWidget(
             animationController: animationViewModel.loadingAnimationController,
             topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
@@ -90,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: ClipRRect(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                   child: Image.network(
-                    museumObjectViewModel.museumObjectModel!.primaryImage,
-                    key: museumObjectViewModel.imageGlobalKey,
+                    artworkViewModel.artworkModel!.imageId!,
+                    key: artworkViewModel.imageGlobalKey,
                     width: ssW(context),
                     fit: BoxFit.contain,
                     loadingBuilder: (context, child, loadingProgress) => _buildLoadingWidget(context, child, loadingProgress),
@@ -99,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ),
               Positioned(
-                top: museumObjectViewModel.imageHeight,
+                top: artworkViewModel.imageHeight,
                 child: Container(
                   width: ssW(context) - 20,
                   decoration: BoxDecoration(
@@ -113,12 +111,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: [
                         45.sbH,
                         Text(
-                          museumObjectViewModel.museumObjectModel!.title,
+                          artworkViewModel.artworkModel!.title!,
                           style: textTheme(context).titleLarge,
                         ),
                         15.sbH,
                         Text(
-                          '${museumObjectViewModel.museumObjectModel!.medium} ${museumObjectViewModel.museumObjectModel!.dimensions}',
+                          '${artworkViewModel.artworkModel!.mediumDisplay} ${artworkViewModel.artworkModel!.dimensions!}',
                           style: textTheme(context).bodySmall,
                         ),
 
@@ -145,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               Positioned(
                 right: 20,
-                top: museumObjectViewModel.imageHeight- 30,
+                top: artworkViewModel.imageHeight- 30,
                 height: 50,
                 child: Container(
                   decoration: BoxDecoration(
@@ -162,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               Positioned(
                 right: 20 + 50 + 10,
-                top: museumObjectViewModel.imageHeight - 30,
+                top: artworkViewModel.imageHeight - 30,
                 height: 50,
                 child: Container(
                   decoration: BoxDecoration(

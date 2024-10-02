@@ -3,6 +3,7 @@ import 'package:reason_for_art_app/presentation/view/tab_screen/favorite_screen.
 import 'package:reason_for_art_app/presentation/view/tab_screen/home_screen.dart';
 import 'package:reason_for_art_app/presentation/view/tab_screen/search_screen.dart';
 import 'package:reason_for_art_app/presentation/view/tab_screen/settings_screen.dart';
+import 'package:reason_for_art_app/presentation/view_model/artwork_view_model.dart';
 
 import '../../di/di.dart';
 import '../../utils/color_utils.dart';
@@ -21,6 +22,7 @@ class _MainTabScreenState extends State<MainTabScreen> {
   final MainTabViewModel mainTabViewModel = DI().get<MainTabViewModel>();
   final DepartmentViewModel departmentViewModel = DI().get<DepartmentViewModel>();
   final MuseumObjectViewModel museumObjectViewModel = DI().get<MuseumObjectViewModel>();
+  final ArtworkViewModel artworkViewModel = DI().get<ArtworkViewModel>();
 
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _MainTabScreenState extends State<MainTabScreen> {
 
     departmentViewModel.getDepartmentList();
     museumObjectViewModel.getMuseumObject();
+    artworkViewModel.getRandomArtworkModel();
 
     mainTabViewModel.addListener(updateScreen);
   }

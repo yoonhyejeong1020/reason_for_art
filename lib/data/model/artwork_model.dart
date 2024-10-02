@@ -302,20 +302,20 @@
 // }
 
 class ArtworkModel {
-  final int id;
-  final String apiLink;
-  final String title;
+  final int? id;
+  final String? apiLink;
+  final String? title;
   final Thumbnail? thumbnail;
-  final int dateStart; // 작품 시작
-  final int dateEnd;  // 작품 끝
-  final String artistDisplay; // 작품 아티스트
-  final String dimensions; // 작픔 크기
-  final String mediumDisplay; // 작품 사용 재료
+  final int? dateStart; // 작품 시작
+  final int? dateEnd;  // 작품 끝
+  final String? artistDisplay; // 작품 아티스트
+  final String? dimensions; // 작픔 크기
+  final String? mediumDisplay; // 작품 사용 재료
   final String? exhibitionHistory; // 이 작품이 전시된 모든 장소 목록
   final String? provenanceText; //
-  final List<String> categoryIds;
-  final List<String> categoryTitles;
-  final List<String> termTitles; // 분류 태그
+  final List<String>? categoryIds;
+  final List<String>? categoryTitles;
+  final List<String>? termTitles; // 분류 태그
   final String? imageId;// 이미지
   final List<String>? altImageIds; // 다른 각도의 이미지인 듯
   final String? description; // 설명
@@ -343,6 +343,15 @@ class ArtworkModel {
   });
 
   factory ArtworkModel.fromJson(Map<String, dynamic> json) {
+
+    String imageUrl(String imageId) => 'https://www.artic.edu/iiif/2/$imageId/full/843,/0/default.jpg';
+
+    List<String>? aliImageIdList = json['alt_image_ids'] == null ? null : List<String>.from(json['alt_image_ids']);
+    List<String>? aliImageUrlList(List<String>? imageIds) {
+      if (imageIds == null) return null;
+      return imageIds.map((e) => imageUrl(e)).toList();
+    }
+
     return ArtworkModel(
       id: json['id'],
       apiLink: json['api_link'],
@@ -355,11 +364,11 @@ class ArtworkModel {
       mediumDisplay: json['medium_display'],
       exhibitionHistory: json['exhibition_history'],
       provenanceText: json['provenance_text'],
-      categoryIds: List<String>.from(json['category_ids']),
-      categoryTitles: List<String>.from(json['category_titles']),
-      termTitles: List<String>.from(json['term_titles']),
-      imageId: json['image_id'],
-      altImageIds: List<String>.from(json['alt_image_ids']),
+      categoryIds: json['category_ids'] == null ? null : List<String>.from(json['category_ids']),
+      categoryTitles: json['category_titles'] == null ? null : List<String>.from(json['category_titles']),
+      termTitles: json['term_titles'] == null ? null : List<String>.from(json['term_titles']),
+      altImageIds: aliImageUrlList(aliImageIdList),
+      imageId: json['image_id'] == null ? null : imageUrl(json['image_id']),
       description: json['description'],
       shortDescription: json['short_description'],
     );
@@ -367,10 +376,10 @@ class ArtworkModel {
 }
 
 class Thumbnail {
-  String lqip;
-  int width;
-  int height;
-  String altText;
+  String? lqip;
+  int? width;
+  int? height;
+  String? altText;
 
   Thumbnail({
     required this.lqip,

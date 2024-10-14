@@ -320,7 +320,7 @@ class ArtworkModel {
   final List<String>? altImageIds; // 다른 각도의 이미지인 듯
   final String? description; // 설명
   final String? shortDescription;
-  final ArtworkColor artworkColor;
+  final ArtworkColor? artworkColor;
 
   ArtworkModel({required this.id, required this.apiLink, required this.title, required this.thumbnail, required this.dateStart, required this.dateEnd, required this.artistDisplay, required this.dimensions, required this.mediumDisplay, required this.exhibitionHistory, required this.provenanceText, required this.categoryIds, required this.categoryTitles, required this.termTitles, required this.imageId, required this.altImageIds, required this.description, required this.shortDescription, required this.artworkColor});
 
@@ -353,7 +353,7 @@ class ArtworkModel {
       imageId: json['image_id'] == null ? null : imageUrl(json['image_id']),
       description: json['description'],
       shortDescription: json['short_description'],
-      artworkColor: ArtworkColor.fromJson(json['color']),
+      artworkColor: json['color'] != null ? ArtworkColor.fromJson(json['color']) : null,
     );
   }
 }

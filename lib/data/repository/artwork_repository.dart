@@ -15,46 +15,58 @@ class ArtworkRepository {
   List urlList = [];
   List imageList = [];
 
-  Future<void> _getRandomArtworkId() async {
-    final Uri url = Uri.parse('https://api.artic.edu/api/v1/artworks');
+  // Future<void> getRandomArtworkId() async {
+  //   final Uri url = Uri.parse('https://api.artic.edu/api/v1/artworks');
+  //
+  //   final response = await _apiDataSources.get(url);
+  //   final List<dynamic> jsonList = jsonDecode(response.body)['data'];
+  //   urlList = jsonList.map((e) => e['api_link']).toList();
+  //
+  //   int totalPage = jsonDecode(response.body)['pagination']['total_pages'];
+  //   String? nextUrl = jsonDecode(response.body)['pagination']['next_url'];
+  //   print('1 next Url $nextUrl');
+  //
+  //   for (int i = 1; i < totalPage; i++) {
+  //     if (nextUrl != null) {
+  //       final Uri url = Uri.parse(nextUrl);
+  //       final response = await _apiDataSources.get(url);
+  //
+  //       final List<dynamic> jsonList = jsonDecode(response.body)['data'];
+  //       urlList.addAll(jsonList.map((e) => e['api_link']));
+  //       imageList.addAll(jsonList.map((e) => e['image_id']));
+  //       print('image List: $imageList');
+  //
+  //       nextUrl = jsonDecode(response.body)['pagination']['next_url'];
+  //       print('2 next Url $nextUrl');
+  //     } else {
+  //       print('break');
+  //       break;
+  //     }
+  //   }
+  // }
 
-    final response = await _apiDataSources.get(url);
-    final List<dynamic> jsonList = jsonDecode(response.body)['data'];
-    urlList = jsonList.map((e) => e['api_link']).toList();
+  Future<void> getRandomArtworkId() async {
 
-    int totalPage = jsonDecode(response.body)['pagination']['total_pages'];
-    String? nextUrl = jsonDecode(response.body)['pagination']['next_url'];
-    print('1 next Url $nextUrl');
+  }
 
-    for (int i = 1; i < 5; i++) {
-      if (nextUrl != null) {
-        final Uri url = Uri.parse(nextUrl);
-        final response = await _apiDataSources.get(url);
+  Future<List<ArtworkModel>> getArtworkList() async {
 
-        final List<dynamic> jsonList = jsonDecode(response.body)['data'];
-        urlList.addAll(jsonList.map((e) => e['api_link']));
-        imageList.addAll(jsonList.map((e) => e['imageId']));
-        print(imageList);
-
-        nextUrl = jsonDecode(response.body)['pagination']['next_url'];
-        print('2 next Url $nextUrl');
-      } else {
-        print('break');
-        break;
-      }
-    }
   }
 
   Future<ArtworkModel> getRandomArtworkModel() async {
-    await _getRandomArtworkId();
     final String randomArtworkUrl = urlList[Random().nextInt(urlList.length)];
+
+    return _getRandomArtworkModel(randomArtworkUrl: randomArtworkUrl);
+  }
+
+  Future<ArtworkModel> _getRandomArtworkModel({required String randomArtworkUrl}) async {
     final Uri url = Uri.parse(randomArtworkUrl);
     print('getRandomArtworkModel url: $url');
 
     final response = await _apiDataSources.get(url);
 
     if (response.statusCode == 404) return await getRandomArtworkModel();
-    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null &&
+    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null ||
         ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
       return await getRandomArtworkModel();
     }
@@ -63,6 +75,25 @@ class ArtworkRepository {
     final Map<String, dynamic> jsonMap = jsonDecode(response.body)['data'];
     return ArtworkModel.fromJson(jsonMap);
   }
+
+  // Future<ArtworkModel> getRandomArtworkModel() async {
+  //   await _getRandomArtworkId();
+  //   final String randomArtworkUrl = urlList[Random().nextInt(urlList.length)];
+  //   final Uri url = Uri.parse(randomArtworkUrl);
+  //   print('getRandomArtworkModel url: $url');
+  //
+  //   final response = await _apiDataSources.get(url);
+  //
+  //   if (response.statusCode == 404) return await getRandomArtworkModel();
+  //   if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null &&
+  //       ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
+  //     return await getRandomArtworkModel();
+  //   }
+  //   print(jsonDecode(response.body)['data']);
+  //
+  //   final Map<String, dynamic> jsonMap = jsonDecode(response.body)['data'];
+  //   return ArtworkModel.fromJson(jsonMap);
+  // }
 
   // List idList = [];
   //

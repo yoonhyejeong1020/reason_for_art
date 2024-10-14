@@ -13,8 +13,9 @@ class ArtworkViewModel extends ChangeNotifier {
   double imageHeight = 370;
 
   Future<void> getRandomArtworkModel() async {
+    await _artworkRepository.getRandomArtworkId();
     artworkModel = await _artworkRepository.getRandomArtworkModel();
-    print(artworkModel);
+    print('ArtworkViewModel artworkModel: $artworkModel');
     notifyListeners();
   }
 

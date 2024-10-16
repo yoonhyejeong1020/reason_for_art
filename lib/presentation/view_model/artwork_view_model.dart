@@ -12,10 +12,19 @@ class ArtworkViewModel extends ChangeNotifier {
   GlobalKey imageGlobalKey = GlobalKey();
   double imageHeight = 370;
 
+  List<ArtworkModel> artworkList = [];
+
+  ScrollController scrollController = ScrollController();
+
   Future<void> getRandomArtworkModel() async {
     await _artworkRepository.getRandomArtworkId();
     artworkModel = await _artworkRepository.getRandomArtworkModel();
     print('ArtworkViewModel artworkModel: $artworkModel');
+    notifyListeners();
+  }
+
+  Future<void> getArtworkList() async {
+    artworkList.addAll(await _artworkRepository.getArtworkList());
     notifyListeners();
   }
 
@@ -25,6 +34,13 @@ class ArtworkViewModel extends ChangeNotifier {
       final size = renderBox.size;
       imageHeight = size.height;
       print('MuseumObjectViewModel: image Height $imageHeight');
+    }
+  }
+
+  Future<void> onScroll() async {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      // if ()
+      await getArtworkList();
     }
   }
 }

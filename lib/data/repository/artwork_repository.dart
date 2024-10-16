@@ -12,8 +12,7 @@ class ArtworkRepository {
 
   ArtworkRepository({required ApiDataSources apiDataSources, required SharedPrefs sharedPrefs}) : _apiDataSources = apiDataSources, _sharedPrefs = sharedPrefs;
 
-  List urlList = [];
-  List imageList = [];
+
 
   // Future<void> getRandomArtworkId() async {
   //   final Uri url = Uri.parse('https://api.artic.edu/api/v1/artworks');
@@ -45,12 +44,46 @@ class ArtworkRepository {
   //   }
   // }
 
-  Future<void> getRandomArtworkId() async {
-
-  }
+  List urlList = [];
+  Uri url = Uri.parse('https://api.artic.edu/api/v1/artworks');
 
   Future<List<ArtworkModel>> getArtworkList() async {
+    final response = await _apiDataSources.get(url);
+    final List<dynamic> jsonList = jsonDecode(response.body)['data'];
+    print('ArtworkRepository getArtworkList: $url');
 
+    url = Uri.parse(jsonDecode(response.body)['pagination']['next_url']);
+    print('ArtworkRepository getArtworkList: $url');
+
+    return jsonList.map((e) => ArtworkModel.fromJson(e)).toList();
+  }
+
+  Future<void> getRandomArtworkId() async {
+    final Uri url = Uri.parse('https://api.artic.edu/api/v1/artworks');
+
+    final response = await _apiDataSources.get(url);
+    final List<dynamic> jsonList = jsonDecode(response.body)['data'];
+    urlList = jsonList.map((e) => e['api_link']).toList();
+
+    int totalPage = jsonDecode(response.body)['pagination']['total_pages'];
+    String? nextUrl = jsonDecode(response.body)['pagination']['next_url'];
+    print('ArtworkRepository getRandomArtworkId: 1 next Url $nextUrl');
+
+    for (int i = 1; i < 10; i++) {
+      if (nextUrl != null) {
+        final Uri url = Uri.parse(nextUrl);
+        final response = await _apiDataSources.get(url);
+
+        final List<dynamic> jsonList = jsonDecode(response.body)['data'];
+        urlList.addAll(jsonList.map((e) => e['api_link']));
+
+        nextUrl = jsonDecode(response.body)['pagination']['next_url'];
+        print('ArtworkRepository getRandomArtworkId: 2 next Url $nextUrl');
+      } else {
+        print('ArtworkRepository getRandomArtworkId: break');
+        break;
+      }
+    }
   }
 
   Future<ArtworkModel> getRandomArtworkModel() async {
@@ -66,10 +99,11 @@ class ArtworkRepository {
     final response = await _apiDataSources.get(url);
 
     if (response.statusCode == 404) return await getRandomArtworkModel();
-    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null ||
-        ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
-      return await getRandomArtworkModel();
-    }
+    // if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null ||
+    //     ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
+    //   return await getRandomArtworkModel();
+    // }
+    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null) return await getRandomArtworkModel();
     print(jsonDecode(response.body)['data']);
 
     final Map<String, dynamic> jsonMap = jsonDecode(response.body)['data'];

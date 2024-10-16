@@ -30,7 +30,9 @@ class _MainTabScreenState extends State<MainTabScreen> {
 
     departmentViewModel.getDepartmentList();
     museumObjectViewModel.getMuseumObject();
+
     artworkViewModel.getRandomArtworkModel();
+    artworkViewModel.getArtworkList();
 
     mainTabViewModel.addListener(updateScreen);
   }
@@ -41,8 +43,8 @@ class _MainTabScreenState extends State<MainTabScreen> {
   Widget build(BuildContext context) {
     const List<Widget> screen = [
       HomeScreen(),
-      FavoriteScreen(),
       SearchScreen(),
+      FavoriteScreen(),
       SettingsScreen(),
     ];
 

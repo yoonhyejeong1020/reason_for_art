@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       print('loadingAnimationController stop');
       animationViewModel.loadingAnimationController.stop();
     }
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget _buildLoadingWidget(BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {

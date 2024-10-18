@@ -88,13 +88,14 @@ class ArtworkRepository {
 
   Future<ArtworkModel> getRandomArtworkModel() async {
     final String randomArtworkUrl = urlList[Random().nextInt(urlList.length)];
+    print(urlList);
 
     return _getRandomArtworkModel(randomArtworkUrl: randomArtworkUrl);
   }
 
   Future<ArtworkModel> _getRandomArtworkModel({required String randomArtworkUrl}) async {
     final Uri url = Uri.parse(randomArtworkUrl);
-    print('getRandomArtworkModel url: $url');
+    print('_getRandomArtworkModel url: $url');
 
     final response = await _apiDataSources.get(url);
 
@@ -103,7 +104,11 @@ class ArtworkRepository {
     //     ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
     //   return await getRandomArtworkModel();
     // }
-    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null) return await getRandomArtworkModel();
+    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null) {
+      print('imageId ${jsonDecode(response.body)['data']}');
+      return await getRandomArtworkModel();
+    }
+    // if (ArtworkModel.fromJson(jsonDecode(response.body)).description == null) return await getRandomArtworkModel();
     print(jsonDecode(response.body)['data']);
 
     final Map<String, dynamic> jsonMap = jsonDecode(response.body)['data'];

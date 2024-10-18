@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 top: artworkViewModel.imageHeight,
                 child: Container(
                   width: ssW(context) - 20,
+                  height: ssH(context),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -120,10 +121,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           style: textTheme(context).bodySmall,
                         ),
                         20.sbH,
+                        Row(
+                          children: [
+                            Container(
+                              height: 50,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: ColorUtils.primaryColor,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20),
+                                child: Text('${artworkViewModel.artworkModel!.artistDisplay}', style: textTheme(context).titleMedium,),
+                              ),
+                            )
+                          ],
+                        ),
+                        20.sbH,
+                        Divider(color: ColorUtils.primaryColor),
+                        20.sbH,
                         Text(
                           '${artworkViewModel.artworkModel!.description}',
-
                         ),
+                        50.sbH,
                       ],
                     ),
                   ),

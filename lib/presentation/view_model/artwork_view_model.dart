@@ -18,8 +18,9 @@ class ArtworkViewModel extends ChangeNotifier {
 
   Future<void> getRandomArtworkModel() async {
     await _artworkRepository.getRandomArtworkId();
-    artworkModel = await _artworkRepository.getRandomArtworkModel();
+    artworkModel = await _artworkRepository.getRandomArtworkUrl();
     print('ArtworkViewModel artworkModel: $artworkModel');
+    Future.delayed(Duration(milliseconds: 200));
     notifyListeners();
   }
 

@@ -86,28 +86,22 @@ class ArtworkRepository {
     }
   }
 
-  Future<ArtworkModel> getRandomArtworkModel() async {
+  Future<ArtworkModel> getRandomArtworkUrl() async {
     final String randomArtworkUrl = urlList[Random().nextInt(urlList.length)];
     print(urlList);
 
-    return _getRandomArtworkModel(randomArtworkUrl: randomArtworkUrl);
+    return getRandomArtworkModel(randomArtworkUrl: randomArtworkUrl);
   }
 
-  Future<ArtworkModel> _getRandomArtworkModel({required String randomArtworkUrl}) async {
+  Future<ArtworkModel> getRandomArtworkModel({required String randomArtworkUrl}) async {
     final Uri url = Uri.parse(randomArtworkUrl);
     print('_getRandomArtworkModel url: $url');
 
     final response = await _apiDataSources.get(url);
 
-    if (response.statusCode == 404) return await getRandomArtworkModel();
-    // if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null ||
-    //     ArtworkModel.fromJson(jsonDecode(response.body)).description == null) {
-    //   return await getRandomArtworkModel();
-    // }
-    if (ArtworkModel.fromJson(jsonDecode(response.body)).imageId == null) {
-      print('imageId ${jsonDecode(response.body)['data']}');
-      return await getRandomArtworkModel();
-    }
+    if (response.statusCode == 404) return await getRandomArtworkUrl();
+    if (jsonDecode(response.body)['data']['image_id'] == null) return await getRandomArtworkUrl();
+    if (jsonDecode(response.body)['data']['description'] == null) return await getRandomArtworkUrl();
     // if (ArtworkModel.fromJson(jsonDecode(response.body)).description == null) return await getRandomArtworkModel();
     print(jsonDecode(response.body)['data']);
 

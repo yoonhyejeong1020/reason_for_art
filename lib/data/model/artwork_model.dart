@@ -321,6 +321,7 @@ class ArtworkModel {
   final String? description; // 설명
   final String? shortDescription;
   final ArtworkColor? artworkColor;
+  // final
 
   ArtworkModel({required this.id, required this.apiLink, required this.title, required this.thumbnail, required this.dateStart, required this.dateEnd, required this.artistDisplay, required this.dimensions, required this.mediumDisplay, required this.exhibitionHistory, required this.provenanceText, required this.categoryIds, required this.categoryTitles, required this.termTitles, required this.imageId, required this.altImageIds, required this.description, required this.shortDescription, required this.artworkColor});
 

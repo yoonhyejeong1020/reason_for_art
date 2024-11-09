@@ -32,13 +32,13 @@ Widget logoWidget({required BuildContext context}) => Container(
 Widget authBtn({required BuildContext context, required String text}) =>
     Container(
       width: ssW(context),
-      height: 60,
+      height: 50,
       decoration: BoxDecoration(
         color: ColorUtils.primaryColor,
         borderRadius: BorderRadius.circular(10),
       ),
       alignment: Alignment.center,
-      child: Text(text, style: textTheme(context).displayLarge),
+      child: Text(text, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
     );
 
 Widget guestLoginBtn({
@@ -59,7 +59,7 @@ Widget guestLoginBtn({
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Text('Continue as a guest', style: textTheme(context).bodyMedium),
+              Text('Continue as a guest', style: TextStyle(fontSize: 14)),
               Positioned(left: 20, child: Icon(Icons.person)),
             ],
           ),

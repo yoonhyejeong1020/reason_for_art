@@ -31,14 +31,15 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void updateScreen() => setState(() {});
 
   void _navigatorScreen() {
-    Timer(Duration(milliseconds: 500), () {
-      Navigator.pushReplacement(
-        context,
-        authViewModel.isLogin()
-            ? MaterialPageRoute(builder: (context) => MainTabScreen())
-            : MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
-    });
+    // Timer(Duration(milliseconds: 500), () {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     authViewModel.isLogin()
+    //         ? MaterialPageRoute(builder: (context) => MainTabScreen())
+    //         : MaterialPageRoute(builder: (context) => LoginScreen()),
+    //   );
+    // });
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainTabScreen()));
   }
 
   @override

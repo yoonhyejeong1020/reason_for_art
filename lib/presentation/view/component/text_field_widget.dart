@@ -9,14 +9,14 @@ Widget idTextFieldWidget({
 }) =>
     SizedBox(
       width: ssW(context),
-      height: 60,
+      height: 50,
       child: CupertinoTextField(
         controller: controller,
         padding: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(color: ColorUtils.grayColor02, borderRadius: BorderRadius.circular(10)),
         style: textTheme(context).bodyMedium,
         placeholder: 'User Id',
-        placeholderStyle: textTheme(context).bodySmall,
+        placeholderStyle: TextStyle(fontSize: 12, color: ColorUtils.grayColor04),
       ),
     );
 
@@ -27,7 +27,7 @@ Widget pwTextFieldWidget({
 }) =>
     SizedBox(
       width: ssW(context),
-      height: 60,
+      height: 50,
       child: CupertinoTextField(
         obscureText: true,
         controller: controller,
@@ -35,7 +35,7 @@ Widget pwTextFieldWidget({
         decoration: BoxDecoration(color: ColorUtils.grayColor02, borderRadius: BorderRadius.circular(10)),
         style: textTheme(context).bodyMedium,
         placeholder: placeholder,
-        placeholderStyle: textTheme(context).bodySmall,
+        placeholderStyle: TextStyle(fontSize: 12, color: ColorUtils.grayColor04),
       ),
     );
 

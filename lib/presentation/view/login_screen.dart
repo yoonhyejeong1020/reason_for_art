@@ -48,8 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               logoWidget(context: context),
-              Text('Login to your Account', style: textTheme(context).titleLarge),
-              20.sbH,
+              Text('Login to your Account', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              15.sbH,
               _loginFrom(context: context),
               30.sbH,
               _orWithLoginWidget(context: context),
@@ -57,13 +57,13 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don’t have an account?', style: textTheme(context).bodyMedium),
+                  Text('Don’t have an account?', style: TextStyle(fontSize: 14)),
                   5.sbW,
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => RegisterScreen(),
                     )),
-                    child: Text('Sign Up', style: TextStyle(color: ColorUtils.primaryColor)),
+                    child: Text('Sign Up', style: TextStyle(fontSize: 14, color: ColorUtils.primaryColor)),
                   ),
                 ],
               ),
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Expanded(child: Divider(color: ColorUtils.grayColor04)),
               10.sbW,
-              Text('or with login', style: textTheme(context).bodyMedium),
+              Text('or with login', style: TextStyle(fontSize: 14)),
               10.sbW,
               Expanded(child: Divider(color: ColorUtils.grayColor04)),
             ],
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: authViewModel.userPw,
             placeholder: 'User Password',
           ),
-          20.sbH,
+          15.sbH,
           authBtn(context: context, text: 'Login')
         ],
       );

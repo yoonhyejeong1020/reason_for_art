@@ -51,8 +51,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               logoWidget(context: context),
-              Text('Create your Account', style: textTheme(context).titleLarge),
-              20.sbH,
+              Text('Create your Account', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              15.sbH,
               _registerFrom(context: context),
               30.sbH,
               _orWithLoginWidget(context: context),
@@ -70,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               Expanded(child: Divider(color: ColorUtils.grayColor04)),
               10.sbW,
-              Text('or with sign up', style: textTheme(context).bodyMedium),
+              Text('or with sign up', style: TextStyle(fontSize: 14)),
               10.sbW,
               Expanded(child: Divider(color: ColorUtils.grayColor04)),
             ],
@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             controller: authViewModel.confirmPw,
             placeholder: 'Confirm Password',
           ),
-          20.sbH,
+          15.sbH,
           authBtn(context: context, text: 'Sign up'),
         ],
       );

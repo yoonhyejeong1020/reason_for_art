@@ -1,16 +1,5 @@
-# reason_for_art_app
+# 예술의 이유 (reason for art)
 
-A new Flutter project.
+예술의 하루는 매일 새로운 예술작품을 소개하고, 작품에 대한 깊이 있는 설명과 작가 정보를 제공하여 사용자에게 예술을 쉽게 접할 수 있는 경험을 선사하는 앱입니다.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="![reason_for_art_logo_image.jpg](assets%2Freason_for_art_logo_image.jpg)" />

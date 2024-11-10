@@ -63,18 +63,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // body: artworkViewModel.artworkModel == null
-        //     ? homeLoadingWidget(
-        //     animationController: animationViewModel.loadingAnimationController,
-        //     topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
-        //     bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
-        //   )
-        //     : _artWidget(context: context),
-        body: homeLoadingWidget(
-          animationController: animationViewModel.loadingAnimationController,
-          topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
-          bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
-        ),
+        body: artworkViewModel.artworkModel == null
+            ? homeLoadingWidget(
+                animationController: animationViewModel.loadingAnimationController,
+                topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
+                bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
+              )
+            : _artWidget01(context: context),
       ),
     );
   }

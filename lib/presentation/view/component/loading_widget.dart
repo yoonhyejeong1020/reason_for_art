@@ -24,7 +24,7 @@ Widget homeLoadingWidget({
                   bottomAlignmentAnimation: bottomAlignmentAnimation,
                 ),
                 Positioned(
-                  top: 360,
+                  top: 350,
                   child: Container(
                     width: ssW(context) - 20,
                     decoration: BoxDecoration(
@@ -36,7 +36,7 @@ Widget homeLoadingWidget({
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          45.sbH,
+                          35.sbH,
                           Container(
                             width: 250,
                             height: 60,
@@ -63,9 +63,9 @@ Widget homeLoadingWidget({
                               bottomAlignmentAnimation: bottomAlignmentAnimation,
                             ),
                           ),
-                          20.sbH,
-                          Divider(color: Colors.black),
-                          20.sbH,
+                          10.sbH,
+                          Divider(color: ColorUtils.grayColor05, thickness: 1.5),
+                          10.sbH,
                           Column(
                             children: List.generate(10, (index) {
                               return Container(
@@ -85,11 +85,11 @@ Widget homeLoadingWidget({
                   ),
                 ),
                 Positioned(
-                  top: 360 - 25,
+                  top: 350 - 20,
                   left: 20,
                   child: Container(
                     width: 160,
-                    height: 50,
+                    height: 40,
                     decoration: animationBoxDecoration(
                       topAlignmentAnimation: topAlignmentAnimation,
                       bottomAlignmentAnimation: bottomAlignmentAnimation,
@@ -97,11 +97,11 @@ Widget homeLoadingWidget({
                   ),
                 ),
                 Positioned(
-                  top: 360 - 25,
+                  top: 350 - 20,
                   right: 20,
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: 40,
+                    height: 40,
                     decoration: animationBoxDecoration(
                       topAlignmentAnimation: topAlignmentAnimation,
                       bottomAlignmentAnimation: bottomAlignmentAnimation,
@@ -109,11 +109,11 @@ Widget homeLoadingWidget({
                   ),
                 ),
                 Positioned(
-                  top: 360 - 25,
-                  right: 20 + 50 + 10,
+                  top: 350 - 20,
+                  right: 20 + 40 + 10,
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: 40,
+                    height: 40,
                     decoration: animationBoxDecoration(
                       topAlignmentAnimation: topAlignmentAnimation,
                       bottomAlignmentAnimation: bottomAlignmentAnimation,

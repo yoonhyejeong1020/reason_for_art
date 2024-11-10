@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,6 @@ import '../../utils/color_utils.dart';
 import '../../utils/context_utils.dart';
 import '../view_model/animation_view_model.dart';
 import '../view_model/auth_view_model.dart';
-import 'login_screen.dart';
 import 'main_tab_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,17 +28,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   void updateScreen() => setState(() {});
 
-  void _navigatorScreen() {
-    // Timer(Duration(milliseconds: 500), () {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     authViewModel.isLogin()
-    //         ? MaterialPageRoute(builder: (context) => MainTabScreen())
-    //         : MaterialPageRoute(builder: (context) => LoginScreen()),
-    //   );
-    // });
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainTabScreen()));
-  }
+  void _navigatorScreen() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainTabScreen()));
 
   @override
   void dispose() {
@@ -53,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     return SafeArea(
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorUtils.primaryColor,

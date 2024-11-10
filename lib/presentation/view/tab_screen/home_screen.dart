@@ -63,15 +63,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: artworkViewModel.artworkModel == null
-            ? homeLoadingWidget(
-            animationController: animationViewModel.loadingAnimationController,
-            topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
-            bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
-          )
-            : _artWidget(context: context),
+        // body: artworkViewModel.artworkModel == null
+        //     ? homeLoadingWidget(
+        //     animationController: animationViewModel.loadingAnimationController,
+        //     topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
+        //     bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
+        //   )
+        //     : _artWidget(context: context),
+        body: homeLoadingWidget(
+          animationController: animationViewModel.loadingAnimationController,
+          topAlignmentAnimation: animationViewModel.topAlignmentAnimation,
+          bottomAlignmentAnimation: animationViewModel.bottomAlignmentAnimation,
+        ),
       ),
     );
+  }
+
+  Widget _artWidget01({required BuildContext context}) {
+    return CustomScrollView();
   }
 
   Widget _artWidget({required BuildContext context}) {
@@ -107,44 +116,49 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        45.sbH,
-                        Text(
-                          artworkViewModel.artworkModel!.title!,
-                          style: textTheme(context).titleLarge,
-                        ),
-                        15.sbH,
-                        Text(
-                          '${artworkViewModel.artworkModel!.mediumDisplay} ${artworkViewModel.artworkModel!.dimensions!}',
-                          style: textTheme(context).bodySmall,
-                        ),
-                        20.sbH,
-                        Row(
-                          children: [
-                            Container(
-                              height: 50,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: ColorUtils.primaryColor,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text('${artworkViewModel.artworkModel!.artistDisplay}', style: textTheme(context).titleMedium,),
-                              ),
-                            )
-                          ],
-                        ),
-                        20.sbH,
-                        Divider(color: ColorUtils.primaryColor),
-                        20.sbH,
-                        Text(
-                          '${artworkViewModel.artworkModel!.description}',
-                        ),
-                        50.sbH,
-                      ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          45.sbH,
+                          Text(
+                            artworkViewModel.artworkModel!.title!,
+                            style: textTheme(context).titleLarge,
+                          ),
+                          15.sbH,
+                          Text(
+                            '${artworkViewModel.artworkModel!.mediumDisplay} ${artworkViewModel.artworkModel!.dimensions!}',
+                            style: textTheme(context).bodySmall,
+                          ),
+                          20.sbH,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: ColorUtils.primaryColor,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text('${artworkViewModel.artworkModel!.artistDisplay}', style: textTheme(context).titleMedium,),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          20.sbH,
+                          Divider(color: ColorUtils.primaryColor),
+                          20.sbH,
+                          Text(
+                            '${artworkViewModel.artworkModel!.description}',
+                          ),
+                          50.sbH,
+                        ],
+                      ),
                     ),
                   ),
                 ),

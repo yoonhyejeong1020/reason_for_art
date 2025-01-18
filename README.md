@@ -15,7 +15,7 @@
 ## External API
 
 - [The Metropolitan Museum of Art Collection API](https://metmuseum.github.io/)
-- [The Artsy Public API]([https://www.artsy.net/](https://developers.artsy.net/))
+- [The Artsy Public API](https://developers.artsy.net/)
 
 ## Design
 

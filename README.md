@@ -19,3 +19,4 @@
 
 ## Design
 
+- [Figma](https://www.figma.com/design/WGRTCnVleMHjgwV3QynPAB)
